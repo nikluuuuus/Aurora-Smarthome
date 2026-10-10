@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA // Das autonome Smart Home & OS-Intelligence</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Offizielles PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=test&currency=EUR"></script>
+
+  <style>
+    body { background-color: #050507; color: #f3f4f6; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .glass {
+      background: rgba(18, 18, 24, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-active {
+      background: rgba(6, 182, 212, 0.12) !important;
+      border-color: rgba(6, 182, 212, 0.6) !important;
+    }
+    .glow-bg {
+      background: radial-gradient(circle at 50% 15%, rgba(6, 182, 212, 0.18), transparent 60%);
+    }
+  </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-cyan-500 selection:text-black">
+
+  <!-- NAVIGATION -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-400 to-indigo-500 flex items-center justify-center font-bold text-black text-sm shadow-[0_0_20px_rgba(6,182,212,0.6)]">
+          A
+        </div>
+        <span class="text-xl font-bold tracking-wider text-white">AURA<span class="text-cyan-400">.</span>OS</span>
+      </div>
+      <nav class="hidden md:flex space-x-8 text-sm font-medium text-neutral-400">
+        <a href="#about" class="hover:text-white transition">Was ist AURA?</a>
+        <a href="#why-us" class="hover:text-white transition">Warum überlegen?</a>
+        <a href="#config-section" class="hover:text-white transition">Konfigurator</a>
+      </nav>
+      <div class="flex items-center space-x-3">
+        <button onclick="scrollToConfig('custom')" class="px-5 py-2.5 rounded-full bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold text-sm transition shadow-[0_0_25px_rgba(6,182,212,0.3)]">
+          Jetzt konfigurieren &amp; kaufen
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-44 pb-20 glow-bg px-6">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full glass border border-white/10 text-xs font-medium text-cyan-400 mb-8">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+        <span>AURA Systems // Das Smart Home der nächsten Generation</span>
+      </div>
+      <h1 class="text-5xl md:text-8xl font-extrabold tracking-tight text-white mb-8 leading-[1.05]">
+        Vergessen Sie alte Smart Homes.<br>
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-white to-neutral-500">
+          Erleben Sie echte Raumintelligenz.
+        </span>
+      </h1>
+      <p class="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+        AURA vereint Ihr komplettes Zuhause mit einem lokalen, autonomen Computer-Agenten. Keine Cloud-Abos. Volle Privatsphäre. Ein echter Butler wie Tony Starks J.A.R.V.I.S.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button onclick="scrollToConfig('custom')" class="w-full sm:w-auto px-8 py-4 rounded-full bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold text-base transition shadow-[0_0_35px_rgba(6,182,212,0.4)]">
+          🛠️ Eigenes System konfigurieren
+        </button>
+        <button onclick="scrollToConfig('preset')" class="w-full sm:w-auto px-8 py-4 rounded-full glass hover:bg-white/10 text-neutral-300 font-medium text-base transition">
+          📦 Vorgefertigte Pakete ansehen
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ERKLÄRUNG: WAS IST AURA? -->
+  <section id="about" class="py-24 px-6 max-w-7xl mx-auto border-t border-white/5">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <span class="text-xs uppercase font-mono tracking-widest text-cyan-400">Das Fundament</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-2">Was ist AURA eigentlich?</h2>
+      <p class="text-neutral-400 text-base mt-4 leading-relaxed font-light">
+        AURA ist nicht einfach nur eine weitere Smartphone-App. Es ist ein <strong>vollwertiges Nervensystem für Ihre Immobilie</strong>, bestehend aus einem lokalen Mini-Server, audiophilen Raum-Satelliten und einer hochentwickelten KI-Steuerung.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="glass rounded-3xl p-8 border border-white/5">
+        <div class="text-3xl mb-4">🏠</div>
+        <h3 class="text-xl font-bold text-white mb-2">1. Universelles Smart Home</h3>
+        <p class="text-sm text-neutral-400 font-light leading-relaxed">
+          Verbindet Licht, Heizkörper, Jalousien, Alarmanlagen und Kameras markenübergreifend. Kompatibel mit Philips Hue, Shelly, Sonoff, Matter, Zigbee und KNX.
+        </p>
+      </div>
+
+      <div class="glass rounded-3xl p-8 border border-cyan-500/30 shadow-[0_0_40px_rgba(6,182,212,0.1)]">
+        <div class="text-3xl mb-4">🧠</div>
+        <h3 class="text-xl font-bold text-white mb-2">2. Autonomer Computer-Agent</h3>
+        <p class="text-sm text-neutral-400 font-light leading-relaxed">
+          Die Weltneuheit: AURA steuert nicht nur Lampen, sondern führt Workflows auf Ihren Servern und PCs aus. Er verwaltet Downloads, sortiert Dateien, liest Dokumente und überwacht Systeme per Sprachbefehl.
+        </p>
+      </div>
+
+      <div class="glass rounded-3xl p-8 border border-white/5">
+        <div class="text-3xl mb-4">🎙️</div>
+        <h3 class="text-xl font-bold text-white mb-2">3. Diskrete Raum-Satelliten</h3>
+        <p class="text-sm text-neutral-400 font-light leading-relaxed">
+          Elegante ESP32-Hardware in jedem Raum lauscht auf Ihre Anweisungen – ohne Ihre Gespräche heimlich an Amazon oder Google zu senden.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WARUM AURA BESSER IST ALS ALLES ANDERE -->
+  <section id="why-us" class="py-24 px-6 bg-gradient-to-b from-transparent via-neutral-950 to-transparent border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-xs uppercase font-mono tracking-widest text-cyan-400">Der Vergleich</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-2">Warum herkömmliche Smart Homes versagen</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Das Problem -->
+        <div class="glass rounded-3xl p-8 border border-red-500/20 bg-red-950/5">
+          <div class="flex items-center space-x-2 text-red-400 font-bold text-sm mb-4">
+            <span>❌</span>
+            <span>Konventionelle Systeme (Alexa, Google, Apple)</span>
+          </div>
+          <ul class="space-y-4 text-xs md:text-sm text-neutral-400">
+            <li class="flex items-start"><span class="text-red-400 mr-2 font-bold">•</span><strong>Cloud-Zwang:</strong> Fällt das Internet aus, geht im Haus kein Licht mehr an.</li>
+            <li class="flex items-start"><span class="text-red-400 mr-2 font-bold">•</span><strong>Monatliche Abokosten:</strong> Kameraspeicher und Zusatzfunktionen kosten teure Monatsgebühren.</li>
+            <li class="flex items-start"><span class="text-red-400 mr-2 font-bold">•</span><strong>Datenspionage:</strong> Private Gespräche werden auf Konzernserver in den USA gestreamt.</li>
+            <li class="flex items-start"><span class="text-red-400 mr-2 font-bold">•</span><strong>Starre Befehle:</strong> Ein falsches Wort und die Sprachassistentin versteht Sie nicht.</li>
+          </ul>
+        </div>
+
+        <!-- Die AURA Lösung -->
+        <div class="glass rounded-3xl p-8 border border-emerald-500/30 bg-emerald-950/10 shadow-[0_0_50px_rgba(16,185,129,0.1)]">
+          <div class="flex items-center space-x-2 text-emerald-400 font-bold text-sm mb-4">
+            <span>✓</span>
+            <span>AURA Living Intelligence</span>
+          </div>
+          <ul class="space-y-4 text-xs md:text-sm text-neutral-200">
+            <li class="flex items-start"><span class="text-emerald-400 mr-2 font-bold">•</span><strong>100% Offline-Fähig:</strong> Der NPU-Server steht bei Ihnen zu Hause. Volle Kontrolle auch ohne Internet.</li>
+            <li class="flex items-start"><span class="text-emerald-400 mr-2 font-bold">•</span><strong>0,00 € monatlich:</strong> Einmal kaufen, für immer besitzen. Keine Abonnements.</li>
+            <li class="flex items-start"><span class="text-emerald-400 mr-2 font-bold">•</span><strong>Absolute Privatsphäre:</strong> Keine Audiodaten verlassen jemals Ihre vier Wände.</li>
+            <li class="flex items-start"><span class="text-emerald-400 mr-2 font-bold">•</span><strong>Echte KI-Konversation:</strong> Versteht natürliche Sprache, Kontext und komplexe Absichten fehlerfrei.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HAUPT-BEREICH: KONFIGURATOR & KAUF -->
+  <section id="config-section" class="py-24 px-6 border-t border-white/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">Verkauf &amp; Konfiguration</span>
+        <h2 class="text-4xl md:text-6xl font-extrabold text-white mt-2">Wählen Sie Ihren Weg</h2>
+        <p class="text-neutral-400 text-sm mt-3">Möchten Sie ein fertiges Bestseller-Paket oder Ihr Zuhause Raum für Raum wie bei Gira planen?</p>
+      </div>
+
+      <!-- DER MODUS-UMSCHALTER -->
+      <div class="flex justify-center mb-12">
+        <div class="glass p-1.5 rounded-full flex space-x-2 border border-white/10">
+          <button id="tab-custom" onclick="switchMode('custom')" class="px-6 py-3 rounded-full text-xs font-bold text-black bg-cyan-400 transition shadow-lg flex items-center space-x-2">
+            <span>🛠️ Raum-für-Raum Planer (Gira-Stil)</span>
+          </button>
+          <button id="tab-preset" onclick="switchMode('preset')" class="px-6 py-3 rounded-full text-xs font-bold text-neutral-400 hover:text-white transition flex items-center space-x-2">
+            <span>📦 Vorgefertigte Pakete</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ANSICHT 1: VORGEFERTIGTE PAKETE -->
+      <div id="view-preset" class="hidden">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          
+          <!-- Paket 1 -->
+          <div class="glass rounded-3xl p-8 flex flex-col justify-between border border-white/5 hover:border-white/20 transition">
+            <div>
+              <span class="text-xs font-mono uppercase text-neutral-400">Starter</span>
+              <h3 class="text-2xl font-bold text-white mt-1">AURA Starter (2 Räume)</h3>
+              <p class="text-xs text-neutral-400 mt-2 mb-6">Für kleine Wohnungen (Wohn- &amp; Schlafbereich).</p>
+              <div class="text-3xl font-extrabold text-white font-mono mb-6">252,00 €</div>
+              <ul class="space-y-3 text-xs text-neutral-300 border-t border-white/5 pt-6">
+                <li class="flex items-center">✓ 1x AURA Hub (Intel N100 + Zigbee Stick)</li>
+                <li class="flex items-center">✓ 2x Audio-Satelliten</li>
+                <li class="flex items-center">✓ Cloud API Intelligence (Gemini)</li>
+                <li class="flex items-center">✓ Plug &amp; Play Selbstinstallation</li>
+              </ul>
+            </div>
+            <button onclick="orderPresetBundle('AURA Starter (2 Räume)', 252.00, 2, false, ['light'])" class="mt-8 w-full py-3.5 rounded-xl bg-white/10 hover:bg-white text-white hover:text-black font-bold text-xs uppercase tracking-wider transition">
+              Paket jetzt kaufen
+            </button>
+          </div>
+
+          <!-- Paket 2 -->
+          <div class="glass rounded-3xl p-8 flex flex-col justify-between border border-cyan-500/50 shadow-[0_0_50px_rgba(6,182,212,0.15)] relative">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-cyan-500 text-black text-[10px] font-extrabold uppercase tracking-widest">
+              Bestseller
+            </div>
+            <div>
+              <span class="text-xs font-mono uppercase text-cyan-400">Meistgekauft</span>
+              <h3 class="text-2xl font-bold text-white mt-1">AURA Pro Residence (4 Räume)</h3>
+              <p class="text-xs text-neutral-400 mt-2 mb-6">Für Wohnungen &amp; Häuser mit 100% Offline-KI.</p>
+              <div class="text-3xl font-extrabold text-white font-mono mb-6">750,00 €</div>
+              <ul class="space-y-3 text-xs text-neutral-300 border-t border-white/5 pt-6">
+                <li class="flex items-center">✓ 1x Local NPU Server (Ryzen 7, 32GB RAM, Offline)</li>
+                <li class="flex items-center">✓ 4x Audio-Satelliten</li>
+                <li class="flex items-center">✓ Licht-, Heizungs- &amp; OS-Agent Modul</li>
+                <li class="flex items-center font-semibold text-cyan-400">✓ Autonomer Computer-Agent inklusive</li>
+              </ul>
+            </div>
+            <button onclick="orderPresetBundle('AURA Pro Residence (4 Räume)', 750.00, 4, true, ['light', 'climate', 'agent'])" class="mt-8 w-full py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold text-xs uppercase tracking-wider transition shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+              Paket jetzt kaufen
+            </button>
+          </div>
+
+          <!-- Paket 3 -->
+          <div class="glass rounded-3xl p-8 flex flex-col justify-between border border-white/5 hover:border-white/20 transition">
+            <div>
+              <span class="text-xs font-mono uppercase text-neutral-400">Vollversion</span>
+              <h3 class="text-2xl font-bold text-white mt-1">J.A.R.V.I.S. Ultimate (6 Räume)</h3>
+              <p class="text-xs text-neutral-400 mt-2 mb-6">Maximales Setup inklusive Technikermontage vor Ort.</p>
+              <div class="text-3xl font-extrabold text-white font-mono mb-6">1.010,00 €</div>
+              <ul class="space-y-3 text-xs text-neutral-300 border-t border-white/5 pt-6">
+                <li class="flex items-center">✓ 1x Local NPU Server (100% Offline)</li>
+                <li class="flex items-center">✓ 6x Audio-Satelliten</li>
+                <li class="flex items-center">✓ Alle Module (Licht, Klima, Sicherheit, OS-Agent)</li>
+                <li class="flex items-center font-semibold text-cyan-400">✓ Inkl. Vor-Ort-Installation durch Techniker</li>
+              </ul>
+            </div>
+            <button onclick="orderPresetBundle('J.A.R.V.I.S. Ultimate (6 Räume)', 1010.00, 6, true, ['light', 'climate', 'agent', 'security'], true)" class="mt-8 w-full py-3.5 rounded-xl bg-white/10 hover:bg-white text-white hover:text-black font-bold text-xs uppercase tracking-wider transition">
+              Paket jetzt kaufen
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ANSICHT 2: RAUM-FÜR-RAUM PLANER (GIRA-STIL) -->
+      <div id="view-custom">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- Linke Seite: Raumbuch & Hardware -->
+          <div class="lg:col-span-2 space-y-6">
+            
+            <!-- Gira-Style Raumbuch -->
+            <div class="glass rounded-3xl p-8">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                  <span>🏡</span> Raumbuch: Welche Zimmer möchten Sie ausstatten?
+                </h3>
+                <span id="customRoomTotalBadge" class="text-xs font-mono font-bold px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400">
+                  4 Zonen
+                </span>
+              </div>
+              <p class="text-xs text-neutral-400 mb-6">
+                Legen Sie die Anzahl der Räume fest. Jeder Raum erhält automatisch die optimale Hardware-Ausstattung.
+              </p>
+
+              <!-- Dynamische Raumkarten mit Zählern (+ / -) -->
+              <div class="space-y-3" id="giraRoomsList"></div>
+            </div>
+
+            <!-- Server & Intelligenzstufe -->
+            <div class="glass rounded-3xl p-8">
+              <h3 class="text-base font-bold text-white mb-2 flex items-center gap-2">
+                <span>🧠</span> Intelligenzkern (Server-Hardware)
+              </h3>
+              <p class="text-xs text-neutral-400 mb-4">Bestimmt, wo Ihre KI-Berechnungen und Daten verarbeitet werden.</p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div onclick="setEngineCustom('local')" id="btn-engine-local" class="glass glass-active p-5 rounded-2xl cursor-pointer transition">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-bold text-white text-sm">Local NPU Core</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-mono font-bold">100% Offline</span>
+                  </div>
+                  <p class="text-xs text-neutral-400 leading-relaxed">AMD Ryzen 7 Mini-PC mit 32GB RAM. Verarbeitet Sprache und Daten komplett privat im Haus.</p>
+                  <div class="text-xs font-mono text-cyan-400 mt-3 font-bold">+ 336,00 € (EK: 280 €)</div>
+                </div>
+
+                <div onclick="setEngineCustom('cloud')" id="btn-engine-cloud" class="glass p-5 rounded-2xl cursor-pointer transition">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-bold text-white text-sm">Cloud Hyperscale</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-400 font-mono font-bold">Gemini API</span>
+                  </div>
+                  <p class="text-xs text-neutral-400 leading-relaxed">Intel N100 Standard-Server. Sprachbefehle werden über sichere Cloud-API ausgewertet.</p>
+                  <div class="text-xs font-mono text-neutral-400 mt-3 font-bold">+ 0,00 € (im Basis-Hub inkl.)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Zusatzmodule -->
+            <div class="glass rounded-3xl p-8">
+              <h3 class="text-base font-bold text-white mb-2 flex items-center gap-2">
+                <span>⚡</span> Zentrale Funktionsmodule
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="globalModulesContainer"></div>
+            </div>
+
+            <!-- Installation -->
+            <div class="glass rounded-3xl p-8">
+              <h3 class="text-base font-bold text-white mb-4">Montage &amp; Inbetriebnahme</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div onclick="setInstallCustom('self')" id="btn-install-self" class="glass glass-active p-4 rounded-2xl cursor-pointer transition">
+                  <div class="text-sm font-bold text-white">Plug &amp; Play (Selbstmontage)</div>
+                  <div class="text-xs text-neutral-400 mt-1">Alle Geräte sind fertig vorkonfiguriert.</div>
+                  <div class="text-xs font-mono text-cyan-400 mt-2 font-bold">0,00 €</div>
+                </div>
+                <div onclick="setInstallCustom('pro')" id="btn-install-pro" class="glass p-4 rounded-2xl cursor-pointer transition">
+                  <div class="text-sm font-bold text-white">Vor-Ort-Technikerservice</div>
+                  <div class="text-xs text-neutral-400 mt-1">Komplette Montage &amp; Einweisung durch Techniker.</div>
+                  <div class="text-xs font-mono text-white mt-2 font-bold">+ 144,00 € (EK: 120 €)</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Rechte Seite: Kassenbeleg / Live-Kalkulator -->
+          <div class="glass rounded-3xl p-8 flex flex-col justify-between border border-cyan-500/30 shadow-[0_0_50px_rgba(6,182,212,0.12)] h-fit sticky top-28">
+            <div>
+              <div class="flex justify-between items-center mb-6 pb-4 border-b border-white/10">
+                <span class="text-xs font-mono uppercase text-cyan-400 tracking-wider">Kalkulation</span>
+                <span class="text-[11px] font-mono text-emerald-400">EK + 20% Gewinn</span>
+              </div>
+
+              <div class="space-y-3 text-xs border-b border-white/10 pb-6 font-mono">
+                <div class="flex justify-between text-neutral-300">
+                  <span>Basis AURA Gateway Hub</span>
+                  <span class="text-white">192,00 €</span>
+                </div>
+                <div class="flex justify-between text-neutral-300">
+                  <span id="billRoomSatellites">4x Audio-Satelliten</span>
+                  <span id="billRoomSatellitesPrice" class="text-white">120,00 €</span>
+                </div>
+                <div class="flex justify-between text-neutral-300">
+                  <span id="billEngineTitle">Local NPU Core</span>
+                  <span id="billEnginePrice" class="text-white">336,00 €</span>
+                </div>
+                <div class="flex justify-between text-neutral-300">
+                  <span id="billModulesTitle">Funktionsmodule</span>
+                  <span id="billModulesPrice" class="text-white">102,00 €</span>
+                </div>
+                <div class="flex justify-between text-neutral-300">
+                  <span id="billInstallTitle">Selbstmontage</span>
+                  <span id="billInstallPrice" class="text-white">0,00 €</span>
+                </div>
+              </div>
+
+              <!-- Gesamtpreis & Marge -->
+              <div class="pt-6">
+                <div class="text-xs text-neutral-400 mb-1">Endkundenpreis (inkl. MwSt.)</div>
+                <div class="text-4xl font-extrabold text-white font-mono tracking-tight" id="liveTotalPrice">750,00 €</div>
+                
+                <!-- Interne Marge für den Betreiber -->
+                <div class="mt-4 p-3 rounded-xl bg-black/40 border border-white/5 font-mono text-[11px] space-y-1">
+                  <div class="flex justify-between text-neutral-400">
+                    <span>Reiner Material-EK:</span>
+                    <span id="liveEkPrice" class="text-white">625,00 €</span>
+                  </div>
+                  <div class="flex justify-between text-emerald-400 font-bold">
+                    <span>Dein Reingewinn (+20%):</span>
+                    <span id="liveProfitPrice">+ 125,00 €</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-8">
+              <button onclick="openCheckoutFromCustom()" class="w-full py-4 rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold text-sm uppercase tracking-wider transition shadow-[0_0_30px_rgba(6,182,212,0.4)]">
+                Zur Kasse / Jetzt bestellen
+              </button>
+              <p class="text-[10px] text-center text-neutral-500 mt-3">Hardware sofort versandfertig // 2 Jahre Garantie</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHECKOUT & TEILLEISTUNGS-MODAL -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+    <div class="glass max-w-2xl w-full rounded-3xl p-8 border border-white/10 relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeCheckoutModal()" class="absolute top-6 right-6 text-neutral-400 hover:text-white text-xl">✕</button>
+
+      <!-- Schritt 1: Checkout Formular -->
+      <div id="checkoutView">
+        <span class="text-xs font-mono uppercase text-cyan-400">Sicherer Checkout</span>
+        <h3 class="text-2xl font-bold text-white mt-1 mb-2">Bestellung abschließen</h3>
+        
+        <div class="bg-black/50 rounded-2xl p-4 mb-6 border border-white/5 font-mono text-xs flex justify-between items-center">
+          <div>
+            <div id="checkoutProductTitle" class="font-bold text-white text-sm">AURA Konfiguration</div>
+            <div id="checkoutProductSubtitle" class="text-neutral-400 text-[11px] mt-0.5">Individuell geplante Hardware</div>
+          </div>
+          <div id="checkoutProductPrice" class="text-cyan-400 font-bold text-lg">750,00 €</div>
+        </div>
+
+        <div class="mb-6">
+          <label class="block text-xs font-semibold text-neutral-300 mb-2">Zahlungsart wählen</label>
+          <div class="grid grid-cols-2 gap-3 mb-4">
+            <button type="button" onclick="setPayMethod('paypal')" id="tabPaypal" class="p-3 rounded-xl glass glass-active text-xs font-bold text-white transition flex items-center justify-center space-x-2">
+              <span>🅿️ PayPal / Karte</span>
+            </button>
+            <button type="button" onclick="setPayMethod('invoice')" id="tabInvoice" class="p-3 rounded-xl glass text-xs font-bold text-neutral-300 transition flex items-center justify-center space-x-2">
+              <span>📄 Auf Rechnung</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="areaPaypal" class="space-y-3">
+          <p class="text-xs text-neutral-400">Sichere Sofortzahlung mit vollem Käuferschutz.</p>
+          <div id="paypal-button-container" class="mt-4"></div>
+        </div>
+
+        <form id="invoiceForm" onsubmit="handleOrderSubmit(event)" class="space-y-3 hidden">
+          <div>
+            <label class="block text-xs font-semibold text-neutral-300 mb-1">Vollständiger Name</label>
+            <input type="text" id="custName" required placeholder="Dr. Tony Stark" class="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-400">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-neutral-300 mb-1">E-Mail für Rechnung &amp; Tracking</label>
+            <input type="email" id="custEmail" required placeholder="stark@avengers.org" class="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-400">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-neutral-300 mb-1">Lieferanschrift (Straße, PLZ, Ort)</label>
+            <input type="text" id="custAddress" required placeholder="Malibu Point 10880, 90265 Malibu" class="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-400">
+          </div>
+          <button type="submit" class="w-full py-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold text-sm uppercase tracking-wider transition mt-4">
+            Kostenpflichtig auf Rechnung bestellen
+          </button>
+        </form>
+      </div>
+
+      <!-- Schritt 2: Erfolgsmeldung + TEILLEISTUNG (BOM) -->
+      <div id="successView" class="hidden py-4">
+        <div class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mx-auto mb-3 border border-emerald-500/30">
+          ✓
+        </div>
+        <h3 class="text-xl font-bold text-white text-center mb-1">Bestellung erfolgreich registriert!</h3>
+        <p class="text-xs text-neutral-400 text-center mb-6">
+          Auftragsnummer: <span class="font-mono text-cyan-400 font-bold" id="confirmedOrderId">#AURA-84920</span>.
+        </p>
+
+        <!-- DIE TEILLEISTUNGS- / PACKLISTE FÜR DICH -->
+        <div class="bg-black/60 rounded-2xl p-5 border border-cyan-500/30 font-mono text-xs">
+          <div class="flex justify-between items-center pb-3 border-b border-white/10 mb-3">
+            <span class="text-cyan-400 font-bold uppercase tracking-wider">📦 Werkstatt-Packliste &amp; Teilleistung:</span>
+            <span class="text-[10px] text-neutral-400">Exakte Einkaufsliste für diesen Auftrag</span>
+          </div>
+
+          <div id="bomListContainer" class="space-y-2 text-neutral-300"></div>
+
+          <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-sm font-bold">
+            <span class="text-neutral-400">Material-EK: <span id="bomTotalEkDisplay" class="text-white"></span></span>
+            <span class="text-emerald-400">Dein Gewinn (+20%): <span id="bomProfitDisplay"></span></span>
+          </div>
+        </div>
+
+        <button onclick="closeCheckoutModal()" class="mt-6 w-full py-3 rounded-xl bg-white text-black font-bold text-xs uppercase tracking-wider">
+          Zurück zur Website
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="border-t border-white/5 py-12 px-6 text-center text-xs text-neutral-600">
+    <p>© 2026 AURA Systems Inc. Entwickelt für die Zukunft des autonomen Wohnens.</p>
+  </footer>
+
+  <!-- SCRIPT LOGIK -->
+  <script>
+    // -------------------------------------------------------------
+    // DATENBANK-SCHNITTSTELLE (Netlify Functions / Supabase)
+    // -------------------------------------------------------------
+    const DATABASE_ENDPOINT = "https://aurorasystems.netlify.app/api/orders";
+
+    // ECHTE EINKAUFSPREISE (EK) + 20% VERKAUFSPREISE (VK)
+    const PRICING = {
+      baseCore: { name: 'AURA Basis Gateway (Intel N100 + Zigbee Dongle-E)', ek: 160.00, vk: 192.00 },
+      satellite: { name: 'ESP32-S3 Hi-Fi Audio-Satellit', ek: 25.00, vk: 30.00 },
+      engine: {
+        local: { name: 'Local NPU Server Upgrade (Ryzen 7, 32GB RAM)', ek: 280.00, vk: 336.00 },
+        cloud: { name: 'Cloud API Engine (im Basis-Gateway enthalten)', ek: 0.00, vk: 0.00 }
+      },
+      modules: {
+        light: { name: 'Smartes Licht (2x Zigbee Relais/Dimmer)', ek: 25.00, vk: 30.00 },
+        climate: { name: 'Heizungssteuerung (2x Thermostate + Sensor)', ek: 50.00, vk: 60.00 },
+        security: { name: 'Sicherheit (1x RTSP Kamera + 2x Sensoren)', ek: 45.00, vk: 54.00 },
+        agent: { name: 'Autonomer OS-Agent (USB Recovery & Daemons)', ek: 10.00, vk: 12.00 }
+      },
+      install: {
+        self: { name: 'Selbstmontage Plug & Play', ek: 0.00, vk: 0.00 },
+        pro: { name: 'Vor-Ort-Technikerservice', ek: 120.00, vk: 144.00 }
+      }
+    };
+
+    // GIRA-STYLE RAUM-DATEN
+    const giraRooms = [
+      { id: 'living', name: 'Wohnzimmer', count: 1, icon: '🛋️' },
+      { id: 'bed', name: 'Schlafzimmer', count: 1, icon: '🛏️' },
+      { id: 'office', name: 'Home Office / Arbeitszimmer', count: 1, icon: '💻' },
+      { id: 'kitchen', name: 'Küche', count: 1, icon: '🍳' },
+      { id: 'bath', name: 'Badezimmer', count: 0, icon: '🚿' },
+      { id: 'hall', name: 'Flur / Eingangsbereich', count: 0, icon: '🚪' },
+      { id: 'garden', name: 'Terrasse / Garten', count: 0, icon: '🌿' }
+    ];
+
+    const customState = {
+      engine: 'local',
+      install: 'self',
+      modules: {
+        light: true,
+        climate: true,
+        agent: true,
+        security: false
+      }
+    };
+
+    let activeOrderData = { title: '', vk: 0, ek: 0, profit: 0, bom: [] };
+
+    // 1. MODUS-UMSCHALTER (Vorgefertigt vs. Custom)
+    function switchMode(mode) {
+      const tabCustom = document.getElementById('tab-custom');
+      const tabPreset = document.getElementById('tab-preset');
+      const viewCustom = document.getElementById('view-custom');
+      const viewPreset = document.getElementById('view-preset');
+
+      if (mode === 'custom') {
+        tabCustom.className = "px-6 py-3 rounded-full text-xs font-bold text-black bg-cyan-400 transition shadow-lg flex items-center space-x-2";
+        tabPreset.className = "px-6 py-3 rounded-full text-xs font-bold text-neutral-400 hover:text-white transition flex items-center space-x-2";
+        viewCustom.classList.remove('hidden');
+        viewPreset.classList.add('hidden');
+      } else {
+        tabPreset.className = "px-6 py-3 rounded-full text-xs font-bold text-black bg-cyan-400 transition shadow-lg flex items-center space-x-2";
+        tabCustom.className = "px-6 py-3 rounded-full text-xs font-bold text-neutral-400 hover:text-white transition flex items-center space-x-2";
+        viewPreset.classList.remove('hidden');
+        viewCustom.classList.add('hidden');
+      }
+    }
+
+    function scrollToConfig(targetMode) {
+      switchMode(targetMode);
+      document.getElementById('config-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 2. GIRA-STYLE RAUMBUCH RENDERN
+    function renderGiraRooms() {
+      const container = document.getElementById('giraRoomsList');
+      container.innerHTML = '';
+      let totalRooms = 0;
+
+      giraRooms.forEach(room => {
+        totalRooms += room.count;
+        const card = document.createElement('div');
+        const isActive = room.count > 0;
+        card.className = `p-4 rounded-2xl glass transition flex items-center justify-between border ${isActive ? 'glass-active' : 'opacity-70'}`;
+        
+        card.innerHTML = `
+          <div class="flex items-center space-x-3">
+            <span class="text-2xl">${room.icon}</span>
+            <div>
+              <div class="font-bold text-white text-sm">${room.name}</div>
+              <div class="text-[11px] text-neutral-400">
+                ${isActive ? `${room.count}x Audio-Satellit (${room.count * 30} €)` : 'Aktuell nicht ausgestattet'}
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <button onclick="changeRoomCount('${room.id}', -1)" class="w-8 h-8 rounded-lg glass hover:bg-white/10 flex items-center justify-center text-white font-bold text-base transition">
+              -
+            </button>
+            <span class="font-mono font-bold text-cyan-400 text-sm w-4 text-center">${room.count}</span>
+            <button onclick="changeRoomCount('${room.id}', 1)" class="w-8 h-8 rounded-lg glass hover:bg-white/10 flex items-center justify-center text-white font-bold text-base transition">
+              +
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      document.getElementById('customRoomTotalBadge').innerText = `${totalRooms} ${totalRooms === 1 ? 'Zone' : 'Zonen'} aktiv`;
+      recalculateCustom();
+    }
+
+    function changeRoomCount(id, delta) {
+      const room = giraRooms.find(r => r.id === id);
+      if (!room) return;
+      const newCount = room.count + delta;
+      if (newCount < 0) return;
+      
+      // Mindestens 1 Raum muss aktiv bleiben
+      const total = giraRooms.reduce((sum, r) => sum + (r.id === id ? newCount : r.count), 0);
+      if (total < 1) {
+        alert('Mindestens 1 Raum muss im System enthalten sein.');
+        return;
+      }
+
+      room.count = newCount;
+      renderGiraRooms();
+    }
+
+    // 3. MODULE RENDERN
+    function renderGlobalModules() {
+      const container = document.getElementById('globalModulesContainer');
+      container.innerHTML = '';
+      const list = [
+        { id: 'light', name: 'Smartes Licht & Ambiente', desc: 'Inkl. 2x Zigbee Relais/Dimmer' },
+        { id: 'climate', name: 'Heizungs- & Klimasteuerung', desc: 'Inkl. 2x Zigbee Thermostate + Sensor' },
+        { id: 'security', name: 'Sicherheit & Kameras', desc: 'Inkl. 1x RTSP Kamera + 2x Sensoren' },
+        { id: 'agent', name: 'Autonomer OS-Agent', desc: 'Inkl. USB-Stick mit Docker & Skripten' }
+      ];
+
+      list.forEach(m => {
+        const active = customState.modules[m.id];
+        const p = PRICING.modules[m.id];
+        const card = document.createElement('div');
+        card.className = `p-4 rounded-2xl glass cursor-pointer transition flex items-center justify-between ${active ? 'glass-active' : ''}`;
+        card.innerHTML = `
+          <div>
+            <div class="font-bold text-white text-xs md:text-sm">${m.name}</div>
+            <div class="text-[11px] text-neutral-400">${m.desc}</div>
+            <div class="text-[10px] font-mono text-cyan-400 mt-0.5">+ ${p.vk.toFixed(2)} € (EK: ${p.ek.toFixed(2)} €)</div>
+          </div>
+          <div class="w-5 h-5 rounded-full border ${active ? 'border-cyan-400 bg-cyan-400 text-black' : 'border-neutral-600'} flex items-center justify-center text-xs font-bold transition">
+            ${active ? '✓' : ''}
+          </div>
+        `;
+        card.onclick = () => {
+          customState.modules[m.id] = !customState.modules[m.id];
+          renderGlobalModules();
+          recalculateCustom();
+        };
+        container.appendChild(card);
+      });
+    }
+
+    function setEngineCustom(type) {
+      customState.engine = type;
+      document.getElementById('btn-engine-local').classList.toggle('glass-active', type === 'local');
+      document.getElementById('btn-engine-cloud').classList.toggle('glass-active', type === 'cloud');
+      recalculateCustom();
+    }
+
+    function setInstallCustom(type) {
+      customState.install = type;
+      document.getElementById('btn-install-self').classList.toggle('glass-active', type === 'self');
+      document.getElementById('btn-install-pro').classList.toggle('glass-active', type === 'pro');
+      recalculateCustom();
+    }
+
+    // 4. LIVE-BERECHNUNG MIT 20% GEWINN
+    function recalculateCustom() {
+      const roomCount = giraRooms.reduce((sum, r) => sum + r.count, 0);
+      
+      let totalEK = PRICING.baseCore.ek;
+      let totalVK = PRICING.baseCore.vk;
+
+      // Satelliten
+      totalEK += roomCount * PRICING.satellite.ek;
+      totalVK += roomCount * PRICING.satellite.vk;
+
+      // Engine
+      totalEK += PRICING.engine[customState.engine].ek;
+      totalVK += PRICING.engine[customState.engine].vk;
+
+      // Module
+      let modVK = 0;
+      let activeModsCount = 0;
+      for (const [key, active] of Object.entries(customState.modules)) {
+        if (active) {
+          totalEK += PRICING.modules[key].ek;
+          totalVK += PRICING.modules[key].vk;
+          modVK += PRICING.modules[key].vk;
+          activeModsCount++;
+        }
+      }
+
+      // Montage
+      totalEK += PRICING.install[customState.install].ek;
+      totalVK += PRICING.install[customState.install].vk;
+
+      const profit = totalVK - totalEK;
+
+      // Kassenbeleg updaten
+      document.getElementById('billRoomSatellites').innerText = `${roomCount}x Audio-Satelliten`;
+      document.getElementById('billRoomSatellitesPrice').innerText = `${(roomCount * PRICING.satellite.vk).toFixed(2)} €`;
+      document.getElementById('billEngineTitle').innerText = customState.engine === 'local' ? 'Local NPU Server' : 'Cloud Engine';
+      document.getElementById('billEnginePrice').innerText = `${PRICING.engine[customState.engine].vk.toFixed(2)} €`;
+      document.getElementById('billModulesTitle').innerText = `${activeModsCount} Module`;
+      document.getElementById('billModulesPrice').innerText = `${modVK.toFixed(2)} €`;
+      document.getElementById('billInstallTitle').innerText = customState.install === 'self' ? 'Selbstmontage' : 'Technikermontage';
+      document.getElementById('billInstallPrice').innerText = `${PRICING.install[customState.install].vk.toFixed(2)} €`;
+
+      document.getElementById('liveTotalPrice').innerText = `${totalVK.toFixed(2)} €`;
+      document.getElementById('liveEkPrice').innerText = `${totalEK.toFixed(2)} €`;
+      document.getElementById('liveProfitPrice').innerText = `+ ${profit.toFixed(2)} €`;
+
+      // BOM generieren
+      const bom = [];
+      if (customState.engine === 'local') {
+        bom.push({ item: '1x AMD Ryzen 7 Mini-PC (32GB RAM, 512GB NVMe SSD für lokale KI)', ek: 280.00 });
+      } else {
+        bom.push({ item: '1x Intel N100 Mini-PC (8GB RAM, 256GB SSD)', ek: 120.00 });
+      }
+      bom.push({ item: '1x Sonoff Zigbee 3.0 / Matter USB-Koordinator Dongle-E', ek: 25.00 });
+      bom.push({ item: '1x Netzteil 12V 3A + Cat6 Gigabit-Netzwerkkabel (2m)', ek: 15.00 });
+      bom.push({ item: `${roomCount}x ESP32-S3 Hi-Fi Audio-Satelliten inkl. Netzteile & Kabel`, ek: roomCount * 25.00 });
+
+      if (customState.modules.light) bom.push({ item: '2x Zigbee UP-Schaltaktoren / Dimmer', ek: 25.00 });
+      if (customState.modules.climate) bom.push({ item: '2x Zigbee Heizkörper-Thermostate + 1x Raumklimasensor', ek: 50.00 });
+      if (customState.modules.security) bom.push({ item: '1x RTSP WiFi Kamera + 2x Tür/Fensterkontakte', ek: 45.00 });
+      if (customState.modules.agent) bom.push({ item: '1x USB 3.0 Recovery-Stick (Docker Images, Daemons, Skripte)', ek: 10.00 });
+      if (customState.install === 'pro') bom.push({ item: 'Techniker-Auftrag: Vor-Ort Montage & Einweisung', ek: 120.00 });
+
+      activeOrderData = {
+        title: `AURA Individuelle Konfiguration (${roomCount} Räume)`,
+        vk: totalVK,
+        ek: totalEK,
+        profit: profit,
+        bom: bom
+      };
+    }
+
+    // 5. CHECKOUT OEFFNEN
+    function openCheckoutFromCustom() {
+      openCheckoutModal(activeOrderData.title, activeOrderData.vk);
+    }
+
+    function orderPresetBundle(title, price, rooms, isLocal, mods, isPro = false) {
+      const bom = [];
+      if (isLocal) {
+        bom.push({ item: '1x AMD Ryzen 7 Mini-PC (32GB RAM, 512GB SSD)', ek: 280.00 });
+      } else {
+        bom.push({ item: '1x Intel N100 Mini-PC (8GB RAM, 256GB SSD)', ek: 120.00 });
+      }
+      bom.push({ item: '1x Sonoff Zigbee 3.0 USB-Stick', ek: 25.00 });
+      bom.push({ item: '1x Netzteil 12V + Cat6 Netzwerkkabel', ek: 15.00 });
+      bom.push({ item: `${rooms}x ESP32-S3 Hi-Fi Sprach-Satelliten`, ek: rooms * 25.00 });
+
+      if (mods.includes('light')) bom.push({ item: '2x Zigbee UP-Schaltaktoren / Dimmer', ek: 25.00 });
+      if (mods.includes('climate')) bom.push({ item: '2x Zigbee Thermostate + 1x Raumklimasensor', ek: 50.00 });
+      if (mods.includes('security')) bom.push({ item: '1x RTSP WiFi Kamera + 2x Tür/Fensterkontakte', ek: 45.00 });
+      if (mods.includes('agent')) bom.push({ item: '1x USB 3.0 Recovery-Stick mit OS-Agent', ek: 10.00 });
+      if (isPro) bom.push({ item: 'Techniker-Auftrag: Montage vor Ort', ek: 120.00 });
+
+      const totalEK = bom.reduce((sum, b) => sum + b.ek, 0);
+      const profit = price - totalEK;
+
+      activeOrderData = {
+        title: title,
+        vk: price,
+        ek: totalEK,
+        profit: profit,
+        bom: bom
+      };
+
+      openCheckoutModal(title, price);
+    }
+
+    function openCheckoutModal(title, price) {
+      document.getElementById('checkoutProductTitle').innerText = title;
+      document.getElementById('checkoutProductPrice').innerText = `${price.toFixed(2)} €`;
+
+      document.getElementById('checkoutView').classList.remove('hidden');
+      document.getElementById('successView').classList.add('hidden');
+
+      const modal = document.getElementById('checkoutModal');
+      modal.classList.remove('hidden');
+      setTimeout(() => modal.classList.remove('opacity-0'), 10);
+
+      initPayPal(price);
+    }
+
+    function closeCheckoutModal() {
+      const modal = document.getElementById('checkoutModal');
+      modal.classList.add('opacity-0');
+      setTimeout(() => modal.classList.add('hidden'), 300);
+    }
+
+    function setPayMethod(method) {
+      const tabPaypal = document.getElementById('tabPaypal');
+      const tabInvoice = document.getElementById('tabInvoice');
+      const areaPaypal = document.getElementById('areaPaypal');
+      const formInvoice = document.getElementById('invoiceForm');
+
+      if (method === 'paypal') {
+        tabPaypal.classList.add('glass-active');
+        tabInvoice.classList.remove('glass-active');
+        areaPaypal.classList.remove('hidden');
+        formInvoice.classList.add('hidden');
+      } else {
+        tabInvoice.classList.add('glass-active');
+        tabPaypal.classList.remove('glass-active');
+        formInvoice.classList.remove('hidden');
+        areaPaypal.classList.add('hidden');
+      }
+    }
+
+    // 6. BESTELLUNG ABSCHLIESSEN & AN DATENBANK SENDEN
+    async function handleOrderSubmit(e) {
+      if (e) e.preventDefault();
+
+      const orderId = '#AURA-' + Math.floor(10000 + Math.random() * 90000);
+
+      const payload = {
+        orderId: orderId,
+        timestamp: new Date().toISOString(),
+        product: activeOrderData.title,
+        customer: {
+          name: document.getElementById('custName').value || 'PayPal Kunde',
+          email: document.getElementById('custEmail').value || 'paypal@kunde.de',
+          address: document.getElementById('custAddress').value || 'PayPal Lieferadresse'
+        },
+        financials: {
+          totalEK: activeOrderData.ek.toFixed(2) + ' €',
+          profit20Percent: activeOrderData.profit.toFixed(2) + ' €',
+          totalVK: activeOrderData.vk.toFixed(2) + ' €'
+        },
+        teilleistung_stueckliste: activeOrderData.bom
+      };
+
+      console.log("Übermittle Auftrag an Datenbank:", payload);
+
+      try {
+        await fetch(DATABASE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.warn("Hinweis: Datenbank noch offline oder Testumgebung. Auftrag lokal verarbeitet.");
+      }
+
+      // Erfolgsanzeige mit Werkstatt-Packliste
+      document.getElementById('confirmedOrderId').innerText = orderId;
+      const bomContainer = document.getElementById('bomListContainer');
+      bomContainer.innerHTML = '';
+      activeOrderData.bom.forEach(part => {
+        const row = document.createElement('div');
+        row.className = "flex justify-between items-center py-1 border-b border-white/5";
+        row.innerHTML = `
+          <span>• ${part.item}</span>
+          <span class="text-neutral-400 font-mono">EK: ${part.ek.toFixed(2)} €</span>
+        `;
+        bomContainer.appendChild(row);
+      });
+
+      document.getElementById('bomTotalEkDisplay').innerText = `${activeOrderData.ek.toFixed(2)} €`;
+      document.getElementById('bomProfitDisplay').innerText = `+ ${activeOrderData.profit.toFixed(2)} €`;
+
+      document.getElementById('checkoutView').classList.add('hidden');
+      document.getElementById('successView').classList.remove('hidden');
+    }
+
+    function initPayPal(amount) {
+      const container = document.getElementById('paypal-button-container');
+      container.innerHTML = '';
+      if (window.paypal) {
+        paypal.Buttons({
+          style: { color: 'blue', shape: 'pill', label: 'pay' },
+          createOrder: (data, actions) => {
+            return actions.order.create({
+              purchase_units: [{
+                description: activeOrderData.title,
+                amount: { value: amount.toFixed(2), currency_code: 'EUR' }
+              }]
+            });
+          },
+          onApprove: (data, actions) => {
+            return actions.order.capture().then(details => {
+              handleOrderSubmit(null);
+            });
+          }
+        }).render('#paypal-button-container');
+      }
+    }
+
+    // Start-Initialisierung
+    renderGiraRooms();
+    renderGlobalModules();
+    recalculateCustom();
+  </script>
+</body>
+</html>
